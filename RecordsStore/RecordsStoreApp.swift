@@ -11,7 +11,7 @@ import SwiftUI
 struct RecordsStoreApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
         }
     }
 }

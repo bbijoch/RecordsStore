@@ -5,6 +5,7 @@
 //  Created by Bernard Bijoch on 02/03/2025.
 //
 
+import Foundation
 
 @propertyWrapper
 struct UserDefault<T: Codable> {

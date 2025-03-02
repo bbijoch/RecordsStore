@@ -12,13 +12,13 @@ struct Item: Codable, Identifiable {
     var title: String
     var artist: String
     var format: String
-    var genre: String?
-    var releaseYear: Int?
+    var genre: String
+    var releaseYear: Int
     var condition: String
-    var coverUrl: String?
-    var sellerId: UUID
-    var buyerId: UUID?
-    var price: Decimal
+    var coverUrl: String
+    var seller: User
+    var buyer: User?
+    var price: String
     var status: String
     var createdAt: Date
     var soldAt: Date?

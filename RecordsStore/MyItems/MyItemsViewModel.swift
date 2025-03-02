@@ -10,16 +10,26 @@ import SwiftUI
 @MainActor
 class MyItemsViewModel: ObservableObject {
     @Published var items: [Item] = []
+    @Published var isLoading: Bool = false
+    @Published var errorMessage: String?
+    @Published var user: User?
 
-    func fetchMyItems(userId: String) async {
-        do {
-            let url = URL(string: "\(baseURL)/items?userId=\(userId)")!
-            let (data, _) = try await URLSession.shared.data(from: url)
-            let decodedItems = try JSONDecoder().decode([Item].self, from: data)
-            self.items = decodedItems
-        } catch {
-            print("Error fetching items: \(error)")
+    func fetchMyItems() async {
+        guard let user = user else {
+            errorMessage = "User not logged in"
+            return
         }
+
+        isLoading = true
+        errorMessage = nil
+
+        do {
+            items = try await NetworkService.shared.fetchMyItems(sellerId: user.id.uuidString)
+        } catch {
+            errorMessage = "Error fetching items: \(error.localizedDescription)"
+        }
+
+        isLoading = false
     }
 
     func updateItem(item: Item) async throws {
