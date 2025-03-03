@@ -71,6 +71,7 @@ struct NetworkService {
 
     // Fetch All Items with Query Parameters
     func fetchItems(sellerId: String? = nil,
+                    search: String? = nil,
                     buyerId: String? = nil,
                     title: String? = nil,
                     artist: String? = nil,
@@ -82,6 +83,7 @@ struct NetworkService {
         var queryItems: [URLQueryItem] = []
 
         if let sellerId = sellerId { queryItems.append(URLQueryItem(name: "seller_id", value: sellerId)) }
+        if let search = search { queryItems.append(URLQueryItem(name: "search", value: search)) }
         if let buyerId = buyerId { queryItems.append(URLQueryItem(name: "buyer_id", value: buyerId)) }
         if let title = title { queryItems.append(URLQueryItem(name: "title", value: title)) }
         if let artist = artist { queryItems.append(URLQueryItem(name: "artist", value: artist)) }

@@ -7,11 +7,17 @@
 
 import SwiftUI
 
+protocol MyUserViewModelDelegate: AnyActor {
+    func userDidLoggedOut()
+}
+
 @MainActor
 class MyUserViewModel: ObservableObject {
     @Published var user: User?
     @Published var isLoading = false
     @Published var errorMessage: String?
+
+    weak var delegate: MyUserViewModelDelegate?
 
     private let networkService = NetworkService.shared
 
@@ -27,5 +33,9 @@ class MyUserViewModel: ObservableObject {
             }
             isLoading = false
         }
+    }
+
+    func logout() {
+        delegate?.userDidLoggedOut()
     }
 }

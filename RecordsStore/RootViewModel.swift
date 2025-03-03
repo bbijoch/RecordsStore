@@ -16,6 +16,7 @@ class RootViewModel: ObservableObject {
 
     init() {
         loginViewModel.delegate = self
+        myUserViewModel.delegate = self
         checkLogin()
     }
 
@@ -35,6 +36,10 @@ class RootViewModel: ObservableObject {
             myUserViewModel.user = nil
         }
     }
+
+    private func logout() {
+        loginViewModel.logout()
+    }
 }
 
 extension RootViewModel: LoginViewModelDelegate {
@@ -42,5 +47,12 @@ extension RootViewModel: LoginViewModelDelegate {
     func userLoginStatusChanged(isLoggedIn: Bool) {
         self.isLoggedIn = isLoggedIn
         checkLogin()
+    }
+}
+
+extension RootViewModel: MyUserViewModelDelegate {
+
+    func userDidLoggedOut() {
+        logout()
     }
 }

@@ -22,7 +22,6 @@ class LoginViewModel: ObservableObject {
     // This property will hold the user that is currently logged in
     @UserDefault(key: "user", defaultValue: nil) private var storedUser: User? {
         didSet {
-            // Update the published user when storedUser is set
             if let user = storedUser {
                 self.user = user
             } else {
@@ -31,15 +30,12 @@ class LoginViewModel: ObservableObject {
         }
     }
 
-
     init() {
-        // Assign the value from UserDefaults to the published user property
         self.user = storedUser
     }
 
     func login() async {
         do {
-
             // Call the network service to fetch the user with login and password
             let fetchedUser = try await NetworkService.shared.login(username: username, password: password)
 
@@ -53,7 +49,12 @@ class LoginViewModel: ObservableObject {
                 delegate?.userLoginStatusChanged(isLoggedIn: false)
             }
         } catch {
-            errorMessage = "Error logging in: \(error.localizedDescription)"
+            errorMessage = "Invalid username or password"
         }
+    }
+
+    func logout() {
+        storedUser = nil
+        delegate?.userLoginStatusChanged(isLoggedIn: false)
     }
 }
