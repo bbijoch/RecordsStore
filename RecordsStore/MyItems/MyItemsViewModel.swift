@@ -26,7 +26,7 @@ class MyItemsViewModel: ObservableObject {
         do {
             items = try await NetworkService.shared.fetchMyItems(sellerId: user.id.uuidString)
         } catch {
-            errorMessage = "Error fetching items: \(error.localizedDescription)"
+            errorMessage = "Error fetching items: \(error)"
         }
 
         isLoading = false

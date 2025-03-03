@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 class FilteredItemsViewModel: ObservableObject {
     @Published var items: [Item] = []
     @Published var isLoading: Bool = false
