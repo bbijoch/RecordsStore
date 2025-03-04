@@ -8,6 +8,7 @@
 
 /* Begin PBXFileReference section */
 		A0A0C99B2D73CF29001A8702 /* RecordsStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecordsStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0C0059E2D772D1100ABF13E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -32,6 +33,7 @@
 		A0A0C9922D73CF29001A8702 = {
 			isa = PBXGroup;
 			children = (
+				A0C0059E2D772D1100ABF13E /* .gitignore */,
 				A0A0C99D2D73CF29001A8702 /* RecordsStore */,
 				A0A0C99C2D73CF29001A8702 /* Products */,
 			);
