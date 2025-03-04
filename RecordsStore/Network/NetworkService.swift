@@ -131,4 +131,10 @@ struct NetworkService {
             throw URLError(.badServerResponse)
         }
     }
+
+    func fetchArtists() async throws -> [Artist] {
+        let url = URL(string: "\(baseURL)/artists")!
+        let (data, _) = try await URLSession.shared.data(from: url)
+        return try decoder.decode([Artist].self, from: data)
+    }
 }
